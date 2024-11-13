@@ -3,15 +3,13 @@ from pydantic import BaseModel
 from typing import Optional
 from documentloader import fetch_and_load_documents
 from qa_pipeline import process_query
-from neo4_utils import get_context_from_neo4j  # Ensure we have this utility file set up
+from neo4_utils import get_context_from_neo4j  
 from neo4j import GraphDatabase
 from dotenv import load_dotenv
 import os
 
-# Load environment variables
 load_dotenv()
 
-# Initialize Neo4j driver
 NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
@@ -65,7 +63,6 @@ async def future_works(request: SearchRequest):
         raise HTTPException(status_code=500, detail="Internal Server Error in future works suggestion.")
 
 
-# Helper function to suggest future works based on the topic
 def suggest_future_works(topic: str):
     suggestions = []
     try:
@@ -78,7 +75,6 @@ def suggest_future_works(topic: str):
             results = session.run(query, topic=topic)
             abstracts = [record["abstract"] for record in results]
 
-            # Basic heuristic to suggest future work (more sophisticated NLP can be added)
             if abstracts:
                 suggestions.append("Explore applications of new findings in practical settings.")
                 suggestions.append("Conduct longitudinal studies to observe the long-term effects.")
