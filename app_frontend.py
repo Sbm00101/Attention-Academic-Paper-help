@@ -1,16 +1,14 @@
 import streamlit as st
 import requests
 
-# Set FastAPI endpoint
-API_URL = "http://127.0.0.1:8090"  # Update this if your FastAPI app is hosted elsewhere
+
+API_URL = "http://127.0.0.1:8090" 
 
 st.title("Academic Research Assistant")
 st.write("Enter a research topic to fetch related papers, ask questions, and explore suggestions for future research.")
 
-# Topic input for searching papers
 topic = st.text_input("Enter a research topic:")
 
-# Search for Papers Button
 if st.button("Search Papers"):
     if topic:
         response = requests.post(f"{API_URL}/search_papers", json={"topic": topic})
@@ -28,10 +26,8 @@ if st.button("Search Papers"):
     else:
         st.warning("Please enter a topic.")
 
-# Input for question-answering
 query = st.text_input("Ask a question about the research topic:")
 
-# Get Answer Button
 if st.button("Get Answer"):
     if topic and query:
         response = requests.post(f"{API_URL}/answer_query", json={"topic": topic, "query": query})
