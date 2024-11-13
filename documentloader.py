@@ -33,7 +33,6 @@ def fetch_and_load_documents(topic, max_results=5):
                     "topic": topic
                 }
 
-                # Store the document in Neo4j
                 session.run(
                     "MERGE (p:Paper {title: $title, abstract: $abstract, published_date: $published_date, "
                     "authors: $authors, pdf_url: $pdf_url, topic: $topic})",
