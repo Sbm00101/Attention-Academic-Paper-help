@@ -3,7 +3,6 @@ from query_parser import detect_intent, extract_entities
 
 # Test function for detecting intents
 def test_detect_intent():
-    # Define a list of test queries and their expected intents
     test_cases = [
         ("Show papers on Deep learning", "search_papers"),
         ("Find future research for AI", "future_works"),
@@ -20,7 +19,6 @@ def test_detect_intent():
 
 # Test function for extracting entities
 def test_extract_entities():
-    # Define test cases with expected outputs
     test_cases = [
         ("Show papers on Deep learning", {"topic": "Deep learning"}),
         ("Get papers on neural networks between 2019 and 2023",
