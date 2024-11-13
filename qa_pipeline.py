@@ -11,7 +11,6 @@ def process_query(query, topic):
     context = get_context_from_neo4j(topic)
 
     if context:
-        # Use the retrieved context to answer the query
         response = qa_model({"question": query, "context": context})
         return response['answer']
     else:
